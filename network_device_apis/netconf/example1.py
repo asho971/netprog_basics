@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#!/usr/bin/env python3
 """
 Learning Series: Network Programmability Basics
 Module: Network Device APIs
@@ -16,14 +16,19 @@ __author_email__ = "hapresto@cisco.com"
 __copyright__ = "Copyright (c) 2016 Cisco Systems, Inc."
 __license__ = "MIT"
 
-from device_info import ios_xe1
+from device_info import ios_xe_sandbox 
 from ncclient import manager
 
-if __name__ == '__main__':
-    with manager.connect(host=ios_xe1["address"], port=ios_xe1["port"],
-                         username=ios_xe1["username"],
-                         password=ios_xe1["password"],
-                         hostkey_verify=False) as m:
+
+# example1.py — manager.connect() block
+with manager.connect(host=ios_xe_sandbox["address"],
+                     port=ios_xe_sandbox["port"],
+                     username=ios_xe_sandbox["username"],
+                     password=ios_xe_sandbox["password"],
+                     hostkey_verify=False,
+                     allow_agent=False,      # don't use ssh-agent
+                     look_for_keys=False     # don't try ~/.ssh/id_* keys
+                     ) as m:
 
         print("Here are the NETCONF Capabilities")
         for capability in m.server_capabilities:

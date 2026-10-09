@@ -17,7 +17,7 @@ __author_email__ = "hapresto@cisco.com"
 __copyright__ = "Copyright (c) 2016 Cisco Systems, Inc."
 __license__ = "MIT"
 
-from device_info import ios_xe1
+from device_info import ios_xe_sandbox
 from ncclient import manager
 import xmltodict
 
@@ -25,9 +25,9 @@ import xmltodict
 netconf_filter = open("filter-ietf-interfaces.xml").read()
 
 if __name__ == '__main__':
-    with manager.connect(host=ios_xe1["address"], port=ios_xe1["port"],
-                         username=ios_xe1["username"],
-                         password=ios_xe1["password"],
+    with manager.connect(host=ios_xe_sandbox["address"], port=ios_xe_sandbox["port"],
+                         username=ios_xe_sandbox["username"],
+                         password=ios_xe_sandbox["password"],
                          hostkey_verify=False) as m:
 
         # Get Configuration and State Info for Interface
